@@ -1,0 +1,17 @@
+.auth {
+  :global {
+    .Panel__in {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  .form {
+    width: 300px;
+
+    .middle {
+      text-align: center;
+    }
+  }
+}

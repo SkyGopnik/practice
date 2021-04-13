@@ -1,0 +1,10 @@
+.menu {
+  .disabled {
+    opacity: .5;
+  }
+
+  .active {
+    border-radius: 8px;
+    background-color: var(--button_secondary_background);
+  }
+}

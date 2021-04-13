@@ -1,0 +1,107 @@
+#main {
+  .Panel__in {
+    //background-color: gray !important;
+  }
+}
+
+//6A9EE5
+
+:global {
+  body {
+    margin: 0 !important;
+  }
+
+  #bg-elast {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background-color: #F8FCFE;
+  }
+
+  .Card {
+    overflow: hidden;
+  }
+
+  .Tabbar {
+    height: auto !important;
+
+    flex-direction: column;
+
+    box-shadow: 0 -2px 4px 0 rgba(0,0,0,.06), 0 0 2px 0 rgba(0,0,0,.08);
+    border-radius: 15px 15px 0px 0px;
+
+    &:before {
+      height: 0 !important;
+    }
+
+    .TabbarItem {
+      cursor: pointer;
+    }
+  }
+
+  .Switch {
+    cursor: pointer;
+  }
+
+  .SimpleCell__main {
+    .SimpleCell__children {
+      line-height: 22px;
+    }
+
+    .SimpleCell__description {
+      line-height: 18px;
+    }
+  }
+
+  @media screen and (max-width: 450px) {
+    .ModalCard--android, .ModalCard--ios {
+      .ModalCard__in {
+        max-width: none;
+      }
+    }
+  }
+
+  @media screen and (max-width: 700px) {
+    .ModalCard--android, .ModalCard--ios {
+      .ModalCard__in {
+        max-width: 400px;
+      }
+    }
+  }
+
+  .success-snack {
+    .Snackbar__in {
+      .Snackbar__body {
+        background: #6A9EE5;
+
+        .Snackbar__content {
+          .Text {
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
+
+  .error-snack {
+    .Snackbar__in {
+      .Snackbar__body {
+        background: #E56A6A;
+
+        .Snackbar__content {
+          .Text {
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
+
+  .Tooltip--y-bottom .Tooltip__corner {
+    bottom: 99% !important;
+  }
+}
