@@ -8,12 +8,14 @@ import {
   changeModal,
   changeStory,
   changePopout,
+  changeSnackbar,
   updateHistory
 } from 'src/store/app/actions';
+import { syncUser } from "src/store/user/actions";
 
-import Menu from './Menu';
+import Questionnaire from './Questionnaire';
 
-const MenuContainer = (props) => <Menu {...props} />;
+const QuestionnaireContainer = (props) => <Questionnaire {...props} />;
 
 const mapStateToProps = (state) => ({
   ...state.app,
@@ -27,7 +29,11 @@ const mapDispatchToProps = {
   changeModal,
   changeStory,
   changePopout,
-  updateHistory
+  changeSnackbar,
+  updateHistory,
+  syncUser
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(MenuContainer);
+export default connect<any, any, {
+  id: string
+}>(mapStateToProps, mapDispatchToProps)(QuestionnaireContainer);

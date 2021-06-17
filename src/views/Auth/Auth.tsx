@@ -12,13 +12,15 @@ import {
   Subhead,
   Title, Snackbar, Avatar
 } from "@vkontakte/vkui";
+import {Icon16Cancel} from "@vkontakte/icons";
 
 import {AppReducerInterface} from "src/store/app/reducers";
 
 import style from './Auth.scss';
-import {Icon16Cancel} from "@vkontakte/icons";
 
-interface IProps extends AppReducerInterface {}
+interface IProps extends AppReducerInterface {
+  id: string
+}
 
 interface FormItem {
   value: string,
@@ -31,7 +33,7 @@ interface IState {
   password: FormItem
 }
 
-export class Auth extends React.Component<IProps, IState> {
+export default class extends React.Component<IProps, IState> {
   constructor(props) {
     super(props);
 
@@ -196,5 +198,3 @@ export class Auth extends React.Component<IProps, IState> {
     );
   }
 }
-
-export default Auth;

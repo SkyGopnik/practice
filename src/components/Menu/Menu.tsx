@@ -1,15 +1,19 @@
 import React from 'react';
+import axios from "axios";
 import {Cell, Group, Spacing} from "@vkontakte/vkui";
 import {Icon28EditOutline, Icon28OnOffOutline, Icon28ServicesOutline} from "@vkontakte/icons";
 
-import style from "./Menu.scss";
 import {AppReducerInterface} from "src/store/app/reducers";
-import axios from "axios";
+import {UserInterface} from "src/store/user/reducers";
 
-interface IProps extends AppReducerInterface {}
+import style from "./Menu.scss";
 
-export default class extends React.Component<IProps, any> {
-  constructor(props) {
+interface IProps extends AppReducerInterface {
+  user: UserInterface
+}
+
+export default class extends React.Component<IProps> {
+  constructor(props: IProps) {
     super(props);
 
     this.logout = this.logout.bind(this);
@@ -27,7 +31,7 @@ export default class extends React.Component<IProps, any> {
   }
 
   render() {
-    const { story, changeStory } = this.props;
+    const { story, user, changeStory } = this.props;
 
     return (
       <Group className={style.menu}>
@@ -41,11 +45,11 @@ export default class extends React.Component<IProps, any> {
           Анкета
         </Cell>
         <Cell
-          className={style.disabled}
+          className={user && !user.questionnaire ? style.disabled : ''}
           data-story="services"
           onClick={(e) => changeStory(e.currentTarget.dataset.story)}
           before={<Icon28ServicesOutline />}
-          disabled
+          disabled={user && !user.questionnaire}
         >
           services
         </Cell>

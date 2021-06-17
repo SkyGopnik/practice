@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from "axios";
 import {
   Cell, Epic,
   Group,
@@ -11,7 +10,7 @@ import {
 
 import Menu from "src/components/Menu/MenuContainer";
 
-import Questionnaire from 'src/views/Questionnaire/Questionnaire';
+import { QuestionnaireView } from "src/views";
 
 import {AppReducerInterface} from "src/store/app/reducers";
 
@@ -45,7 +44,7 @@ export default class extends React.Component<IProps> {
           maxWidth="560px"
         >
           <Epic activeStory={story}>
-            <Questionnaire id="questionnaire" />
+            <QuestionnaireView id="questionnaire" />
             {/*<View id="services" activePanel="services">*/}
             {/*  <Panel id="services">*/}
             {/*    <PanelHeader>Сервисы</PanelHeader>*/}

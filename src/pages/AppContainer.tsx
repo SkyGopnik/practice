@@ -10,6 +10,7 @@ import {
   changePopout,
   updateHistory
 } from '../store/app/actions';
+import { syncUser } from '../store/user/actions';
 
 import App from './App';
 
@@ -26,7 +27,8 @@ const mapDispatchToProps = {
   changeModal,
   changeStory,
   changePopout,
-  updateHistory
+  updateHistory,
+  syncUser
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppContainer);

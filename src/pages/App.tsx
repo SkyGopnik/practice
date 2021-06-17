@@ -10,35 +10,25 @@ import {
 
 /* Layouts */
 import MainLayout from "src/layouts/Main/MainContainer";
-
-/* Views */
-import Auth from "src/views/Auth/AuthContainer";
+import { AuthView } from "src/views";
 
 import {AppReducerInterface} from "src/store/app/reducers";
 
 import '../styles/all.scss';
 
-interface IProps extends AppReducerInterface {}
-
-interface IState {
-  scheme: AppearanceSchemeType,
-  isHorizontal: boolean
+interface IProps extends AppReducerInterface {
+  syncUser(data: any)
 }
 
-export default class extends React.Component<IProps, IState> {
+export default class extends React.Component<IProps> {
   constructor(props: IProps) {
     super(props);
-
-    this.state = {
-      scheme: 'bright_light',
-      isHorizontal: false
-    };
 
     this.menu = this.menu.bind(this);
   }
 
   async componentDidMount() {
-    const { changeView } = this.props;
+    const { changeView, syncUser } = this.props;
 
     // Навешиваем обработчик кнопку вперёд/назад
     window.addEventListener('popstate', (e) => {
@@ -54,12 +44,13 @@ export default class extends React.Component<IProps, IState> {
     if (token) {
       console.log(token);
       try {
-        await axios.get('/auth/' + token);
+        const { data } = await axios.get('/auth/' + token);
 
         // Проверяем токен на валидность и запоминаем его
         axios.defaults.headers.common.token = token;
 
         changeView('main');
+        syncUser(data);
       } catch (e) {
         console.log(e);
       }
@@ -106,11 +97,10 @@ export default class extends React.Component<IProps, IState> {
 
   render() {
     const { view, story, popout } = this.props;
-    const { scheme } = this.state;
 
     return (
       <ConfigProvider
-        scheme={scheme}
+        scheme="bright_light"
         transitionMotionEnabled={false}
       >
         <AdaptivityProvider>
@@ -122,7 +112,7 @@ export default class extends React.Component<IProps, IState> {
               {/*// @ts-ignore*/}
               <MainLayout id="main" />
               {/*// @ts-ignore*/}
-              <Auth id="auth" />
+              <AuthView id="auth" />
             </Root>
           </AppRoot>
         </AdaptivityProvider>
